@@ -9,83 +9,116 @@ sdk_version: 5.43.1
 
 ## Introduction
 
-Modern job-seeking and networking are increasingly digital, yet most online profiles and resumes remain static, limiting genuine engagement and differentiation. Imagine if a potential employer or collaborator could interact with a dynamic **AI agent that truly represents you**—answering questions about your experience, skills, and background in real time, steering conversations towards meaningful interactions, and handling requests just as you would. This project is a step toward reshaping how professionals connect, present themselves, and create trust online.
+Digital professional profiles are often static and impersonal, limiting genuine connections and failing to capture a candidate’s essence in conversations with potential employers. **Imagine an AI you can interact with—one that authentically represents your experience, skills, and ambitions.** This project is a pioneering example: it launches an agentic AI chatbot that acts as a dynamic, interactive proxy for Akhil Gunda, empowering future employers and collaborators to engage directly and meaningfully.
 
-**This repository launches an agentic AI powered chatbot that acts as a live, interactive proxy for Akhil Gunda.** It draws from Akhil's experiences, resume, and personal summary to provide authentic, intelligent responses to site visitors. This technology empowers individuals to put their best foot forward at scale, providing a unique edge in the job market and beyond.
-
-***
-
-## Project Structure and Features
-
-### Key Technologies
-
-- **OpenAI LLM Integration:** Handles natural, conversational interactions.
-- **Gradio:** Provides an accessible and attractive web-based chat interface.
-- **pypdf \& Requests:** Enable personalized data ingestion and outbound notifications.
-- **dotenv:** Secure configuration through environment variables.
-
-
-### Core Agentic AI Capabilities
-
-This project showcases several **agentic AI** principles:
-
-- **Persona-Driven Interaction:** The agent is strictly guided by Akhil's real biography, resume, and career summary, ensuring all responses feel authentic and personally relevant.
-- **Tool Use:** The agent calls specialized functions to:
-    - **Record leads:** Capture emails and user details from interested visitors.
-    - **Log unknown queries:** Document what the agent can't answer, providing insights into visitor intent and knowledge gaps.
-    - **Push notifications:** Alert Akhil instantly about important interactions.
-- **Context Awareness:** The agent uses uploaded documents (resume, summary) and tracks ongoing conversation history for nuanced, knowledgeable replies.
-- **Autonomous Conversation Flow:** Beyond simple question-answering, the agent steers conversations towards engagement (e.g., prompting users to share their email or propose collaboration). This is a hallmark of agentic AI, where the model pursues explicit goals with adaptive strategies.
+**This AI agent is live and available for public engagement via Hugging Face Spaces:**
+👉 [Ask Akhil anything](https://huggingface.co/spaces/AkhilGunda16/career_conversation) — anyone can chat and interact with the agent now.
 
 ***
 
-## Installation \& Usage
+## Key Features
 
-1. Clone the repository:
+### Technologies Used
+
+- **OpenAI LLM Integration:** Drives impactful, natural conversations.
+- **Gradio:** Powers a robust and user-friendly chat interface, both locally and on Hugging Face.
+- **pypdf \& Requests:** For personalized data ingestion (from resume/profile) and real-time notifications.
+- **dotenv:** Secures configuration with easy environment variable management.
+
+
+### Agentic AI Capabilities
+
+- **Persona-Driven Responses:** The agent is built to answer as Akhil Gunda, using his real resume and background for context-rich, authentic replies.
+- **Goal-Oriented Conversation:** It proactively steers interactions toward meaningful outcomes (e.g., collecting interested users’ contact info).
+- **Tool Use:**
+    - **Lead Capture:** Collects emails, names, and notes from users wanting to connect.
+    - **Knowledge Gaps:** Logs all questions that the agent could not answer, providing feedback for further improvement.
+    - **Push Notifications:** Akhil is notified instantly about important new leads or questions.
+- **Context Awareness:** Leverages multi-turn conversation and personal documents (resume and summary) for nuanced, accurate information.
+- **Autonomy:** Adapts strategies to optimize for engagement—hallmark of agentic AI.
+- **Publicly Accessible Deployment:** Hosted on Hugging Face Spaces, making it easy for anyone, anywhere to ask Akhil anything in real time.
+
+👉 **For a live demo, visit:** [https://huggingface.co/spaces/AkhilGunda16/career_conversation](https://huggingface.co/spaces/AkhilGunda16/career_conversation)
+
+***
+
+## Installation \& Running Locally
+
+1. **Clone the repository:**
 
 ```bash
 git clone https://github.com/akhilgunda/agentic-ai-representative.git
-```
-
-2. Install dependencies:
-
-```bash
+cd agentic-ai-representative
 pip install -r requirements.txt
 ```
 
-3. Set up environment variables:
-    - Create a `.env` file with your Pushover API credentials.
-    - Place Akhil's `Resume.pdf` and `summary.txt` under the appropriate folder.
-4. Launch the chat interface:
+2. **Add your personal documents:**
+Create a folder named `me` inside the main project directory and place your files inside it:
+    - `Resume.pdf` — your resume or CV (PDF format)
+    - `summary.txt` — a brief summary/about you in plain text
+    - Optionally, add other files (e.g. `LinkedIn_Profile.pdf`, `Portfolio.pdf`, etc.)
+3. **Set your identity:**
+In `app.py`, change the line:
+
+```python
+self.name = "Your Full Name"
+```
+
+Replace with your own name.
+4. **Configure environment variables:**
+Create a `.env` file with your Pushover and OpenAI API keys:
+
+```
+PUSHOVER_TOKEN=your_pushover_token
+PUSHOVER_USER=your_pushover_user_key
+OPENAI_API_KEY=your_openai_api_key
+```
+
+5. **Run your agent locally:**
 
 ```bash
 python app.py
 ```
 
+The Gradio chat interface will launch; you can interact as your own AI representative, answering questions using your personal background, resume, and any other documents you have added.
+
+***
+
+## Hugging Face Spaces Deployment
+
+**A major feature of this project is open deployment via Hugging Face Spaces.**
+Hugging Face enables anyone to interact with Akhil's agent through a secure, scalable cloud-hosted Gradio interface, lowering the technical barrier for interviews, networking, and career conversations.
+
+- **No setup required:** Visit [https://huggingface.co/spaces/AkhilGunda16/career_conversation](https://huggingface.co/spaces/AkhilGunda16/career_conversation) and start chatting instantly.
+- **Broader impact:** Friends, employers, collaborators, and curious visitors worldwide can engage with Akhil’s digital persona—no local environment needed.
 
 ***
 
 ## Future Work
 
-While this release is tailored exclusively for Akhil Gunda, the broader vision includes making **agentic personal AI** available for everyone. Potential directions include:
+This agent presently represents Akhil Gunda, but its architecture is intended to pioneer **agentic personal AI for everyone**. Next steps include:
 
-- **Generalized Framework:** Architecting the codebase for easy onboarding of any user's resume and profile, enabling personal brand automation for all.
-- **RAG Integration:** Employing Retrieval-Augmented Generation to boost the agent's depth and accuracy using richer document repositories or web data.
-- **Evaluator Agents:** Building a separate "evaluator" agentic module that actively reviews, critiques, and suggests improvements to both the agent's answers and the underlying knowledge base, boosting response quality.
-- **Domain Adaptation:** Supporting multiple personas (e.g., entrepreneur, researcher, developer), each with different knowledge sources and conversational styles.
+- **Generalization:** Making onboarding frictionless so anyone can easily deploy their own agent.
+- **RAG (Retrieval-Augmented Generation):** Improving answer quality and depth by extending the agent’s memory and training using richer document bases (CVs, portfolios, recommendations, etc.).
+- **Evaluator Agents:** Integrating agentic evaluators to continually review and suggest improvements to answers, thus increasing reliability and professionalism.
+- **Multiple Personas:** Supporting career pivots, research profiles, and multi-domain personas for complex users.
 
 ***
 
 ## Conclusion
 
-This project is an early demonstration of how **agentic AI can power highly personalized, interactive digital representations** for professionals. By blending advanced language models, tool-use capabilities, and goal-driven interaction, it paves the way for future-proof networking and recruiting experiences.
+**Akhil Gunda’s Agentic AI Representative** is a first step towards a future where every professional can be present everywhere, all the time. By blending AI-driven context, real-time tool use, and autonomous conversation management, together with open cloud deployment via Hugging Face, it offers new opportunities for career growth and personal connection.
 
-For now, it represents only Akhil Gunda, but its potential is universal: making AI-driven personal representation accessible, accurate, and actionable for everyone.
+**Try it, share feedback, and imagine how this could reshape networking and hiring—starting today.**
 
-**Want to be represented by your own agent? Stay tuned and reach out! Collaborations and feedback are always welcome.**
-<span style="display:none">[^1]</span>
+👉 **Engage with Akhil’s agentic AI now:** [https://huggingface.co/spaces/AkhilGunda16/career_conversation](https://huggingface.co/spaces/AkhilGunda16/career_conversation)
+<span style="display:none">[^2_1][^2_2]</span>
 
 <div style="text-align: center">⁂</div>
 
-[^1]: app.py
+[^2_1]: app.py
+
+[^2_2]: https://huggingface.co/spaces/AkhilGunda16/career_conversation
+
+
 
